@@ -1,5 +1,5 @@
 const boardDiv = document.getElementById('board');
-
+// everything in the box
 for (let i = 0; i < 81; i++) {
   const cell = document.createElement('input');
   cell.type = 'text';
@@ -15,7 +15,6 @@ for (let i = 0; i < 81; i++) {
     }
   });
 }
-
 const cells = document.querySelectorAll('#board input');
 
 function getBoard() {
@@ -107,16 +106,16 @@ function isValidBoard(board) {
 document.getElementById('solveBtn').addEventListener('click', () => {
   let board = getBoard();
   if (!isValidBoard(board)) {
-    alert("❌ Invalid Sudoku! Duplicate numbers found.");
+    cells.forEach(c => (c.value = ''));
     return;
   }
   if (!solveSudoku(board)) {
-    alert("❌ This Sudoku puzzle cannot be solved!");
+    cells.forEach(c => (c.value = ''));
     return;
   }
   setBoard(board);
 });
 
-document.getElementById('clearBtn').addEventListener('click', () => {
+document.getElementById('clear').addEventListener('click', () => {
   cells.forEach(c => (c.value = ''));
 });
